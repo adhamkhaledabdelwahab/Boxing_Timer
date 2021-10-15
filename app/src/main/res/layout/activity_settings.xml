@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.SettingsActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/settings_text"
+        app:titleTextColor="@color/white" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/SettingsUpdate"
+            android:background="@android:drawable/screen_background_dark_transparent"
+            android:fadeScrollbars="false"
+            android:isScrollContainer="true"
+            android:scrollbarSize="5dp"
+            android:scrollbarThumbVertical="@color/colorAccent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/RoundsTextView"
+                        style="@style/HeaderTextViews"
+                        android:text="@string/settingsRoundsTitleTextView" />
+
+                    <TextView
+                        android:id="@+id/RoundsEditor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/RoundsTextView"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/white"
+                        tools:text="3" />
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        android:id="@+id/RoundsIncreaseButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/RoundsTextView"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:mrl_rippleColor="@color/colorPrimary"
+                        app:mrl_rippleDelayClick="false"
+                        app:mrl_rippleOverlay="true"
+                        app:mrl_rippleRoundedCorners="5dp"
+                        tools:ignore="DuplicateClickableBoundsCheck,DuplicateSpeakableTextCheck">
+
+                        <TextView
+                            style="@style/IncAndDecButtons"
+                            android:gravity="center"
+                            android:text="@string/settingsRoundsIncreaseText" />
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        android:id="@+id/RoundsDecreaseButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/RoundsTextView"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toStartOf="@id/RoundsIncreaseButton"
+                        android:layout_toLeftOf="@id/RoundsIncreaseButton"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:mrl_rippleColor="@color/colorPrimary"
+                        app:mrl_rippleDelayClick="false"
+                        app:mrl_rippleOverlay="true"
+                        app:mrl_rippleRoundedCorners="5dp"
+                        tools:ignore="DuplicateClickableBoundsCheck,DuplicateSpeakableTextCheck">
+
+                        <TextView
+                            style="@style/IncAndDecButtons"
+                            android:gravity="center"
+                            android:text="@string/settingsRoundsDecreaseText" />
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/TrainTimeTextView"
+                        style="@style/HeaderTextViews"
+                        android:text="@string/settingsTrainTimerTitle" />
+
+                    <TextView
+                        android:id="@+id/TrainTimeEditor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/TrainTimeTextView"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/white"
+                        tools:text="03:00" />
+
+                    <ImageButton
+                        android:id="@+id/TrainTimeAdjustment"
+                        style="@style/IncAndDecButtons"
+                        android:layout_below="@id/TrainTimeTextView"
+                        android:layout_toStartOf="@id/TrainTimDecreaseButton"
+                        android:layout_toLeftOf="@id/TrainTimDecreaseButton"
+                        android:background="?selectableItemBackground"
+                        android:src="@drawable/ic_time_adjust"
+                        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        android:id="@+id/TrainTimeIncreaseButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/TrainTimeTextView"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:mrl_rippleColor="@color/colorPrimary"
+                        app:mrl_rippleDelayClick="false"
+                        app:mrl_rippleOverlay="true"
+                        app:mrl_rippleRoundedCorners="5dp"
+                        tools:ignore="DuplicateClickableBoundsCheck">
+
+                        <TextView
+                            style="@style/IncAndDecButtons"
+                            android:gravity="center"
+                            android:text="@string/settingsRoundsIncreaseText" />
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        android:id="@+id/TrainTimDecreaseButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/TrainTimeTextView"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toStartOf="@id/TrainTimeIncreaseButton"
+                        android:layout_toLeftOf="@id/TrainTimeIncreaseButton"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:mrl_rippleColor="@color/colorPrimary"
+                        app:mrl_rippleDelayClick="false"
+                        app:mrl_rippleOverlay="true"
+                        app:mrl_rippleRoundedCorners="5dp"
+                        tools:ignore="DuplicateClickableBoundsCheck">
+
+                        <TextView
+                            style="@style/IncAndDecButtons"
+                            android:gravity="center"
+                            android:text="@string/settingsRoundsDecreaseText" />
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/BreakTimeTextView"
+                        style="@style/HeaderTextViews"
+                        android:text="@string/settingsBreakTimerTitleTextView" />
+
+                    <TextView
+                        android:id="@+id/BreakTimeEditor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/BreakTimeTextView"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/white"
+                        tools:text="01:00" />
+
+                    <ImageButton
+                        android:id="@+id/BreakTimeAdjustment"
+                        style="@style/IncAndDecButtons"
+                        android:layout_below="@id/BreakTimeTextView"
+                        android:layout_toStartOf="@id/BreakTimeDecreaseButton"
+                        android:layout_toLeftOf="@id/BreakTimeDecreaseButton"
+                        android:background="?selectableItemBackground"
+                        android:src="@drawable/ic_time_adjust"
+                        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        android:id="@+id/BreakTimeIncreaseButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/BreakTimeTextView"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:mrl_rippleColor="@color/colorPrimary"
+                        app:mrl_rippleDelayClick="false"
+                        app:mrl_rippleOverlay="true"
+                        app:mrl_rippleRoundedCorners="5dp"
+                        tools:ignore="DuplicateClickableBoundsCheck">
+
+                        <TextView
+                            style="@style/IncAndDecButtons"
+                            android:gravity="center"
+                            android:text="@string/settingsRoundsIncreaseText" />
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        android:id="@+id/BreakTimeDecreaseButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/BreakTimeTextView"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toStartOf="@id/BreakTimeIncreaseButton"
+                        android:layout_toLeftOf="@id/BreakTimeIncreaseButton"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:mrl_rippleColor="@color/colorPrimary"
+                        app:mrl_rippleDelayClick="false"
+                        app:mrl_rippleOverlay="true"
+                        app:mrl_rippleRoundedCorners="5dp"
+                        tools:ignore="DuplicateClickableBoundsCheck">
+
+                        <TextView
+                            style="@style/IncAndDecButtons"
+                            android:gravity="center"
+                            android:text="@string/settingsRoundsDecreaseText" />
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/DelayTimeTextView"
+                        style="@style/HeaderTextViews"
+                        android:text="@string/settingsDelayTimeTitleTextView" />
+
+                    <TextView
+                        android:id="@+id/DelayTimeEditor"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/DelayTimeTextView"
+                        android:background="@drawable/bottom_border"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/white"
+                        tools:text="3" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/DelayTimeTextView"
+                        android:layout_toEndOf="@id/DelayTimeEditor"
+                        android:layout_toRightOf="@id/DelayTimeEditor"
+                        android:gravity="bottom"
+                        android:text="@string/settingsDelayTimeSecondTextView"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/white" />
+
+                    <ImageButton
+                        android:id="@+id/aboutDelayTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/DelayTimeTextView"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toStartOf="@id/DelayTimeDecreaseButton"
+                        android:layout_toLeftOf="@id/DelayTimeDecreaseButton"
+                        android:background="@android:color/transparent"
+                        android:minWidth="48dp"
+                        android:src="@android:drawable/ic_menu_info_details"
+                        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        android:id="@+id/DelayTimeIncreaseButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/DelayTimeTextView"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:mrl_rippleColor="@color/colorPrimary"
+                        app:mrl_rippleDelayClick="false"
+                        app:mrl_rippleOverlay="true"
+                        app:mrl_rippleRoundedCorners="5dp"
+                        tools:ignore="DuplicateClickableBoundsCheck">
+
+                        <TextView
+                            style="@style/IncAndDecButtons"
+                            android:gravity="center"
+                            android:text="@string/settingsRoundsIncreaseText" />
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        android:id="@+id/DelayTimeDecreaseButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/DelayTimeTextView"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toStartOf="@id/DelayTimeIncreaseButton"
+                        android:layout_toLeftOf="@id/DelayTimeIncreaseButton"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:mrl_rippleColor="@color/colorPrimary"
+                        app:mrl_rippleDelayClick="false"
+                        app:mrl_rippleOverlay="true"
+                        app:mrl_rippleRoundedCorners="5dp"
+                        tools:ignore="DuplicateClickableBoundsCheck">
+
+                        <TextView
+                            style="@style/IncAndDecButtons"
+                            android:gravity="center"
+                            android:text="@string/settingsRoundsDecreaseText" />
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/SoundSettingTextView"
+                        style="@style/HeaderTextViews"
+                        android:text="@string/settingsSoundSettingTitleTextView" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/SoundSettingTextView"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/settingsSoundOnText"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/white" />
+
+                    <CheckBox
+                        android:id="@+id/SoundSettingEditor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/SoundSettingTextView"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:minWidth="48dp"
+                        android:scaleX="1.5"
+                        android:scaleY="1.5"
+                        android:theme="@style/checkBoxTheme"
+                        tools:ignore="DuplicateSpeakableTextCheck" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/VolumeSettingTextView"
+                        style="@style/HeaderTextViews"
+                        android:text="@string/settingsVolumeSettingTitleTextView" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/VolumeSettingTextView"
+                        android:orientation="horizontal">
+
+                        <SeekBar
+                            android:id="@+id/VolumeSettingEditor"
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:layout_weight="1"
+                            android:progress="100"
+                            android:theme="@style/checkBoxTheme" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:orientation="horizontal">
+
+                            <ImageButton
+                                android:id="@+id/aboutVolumeSetting"
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@android:color/transparent"
+                                android:minWidth="48dp"
+                                android:src="@android:drawable/ic_menu_info_details"
+                                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+                            <com.balysv.materialripple.MaterialRippleLayout
+                                android:id="@+id/VolumeSettingEditorListen"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:minHeight="48dp"
+                                app:mrl_rippleColor="@color/colorPrimary"
+                                app:mrl_rippleDelayClick="false"
+                                app:mrl_rippleOverlay="true"
+                                app:mrl_rippleRoundedCorners="5dp"
+                                tools:ignore="DuplicateClickableBoundsCheck">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/white_rounded_border"
+                                    android:maxLines="1"
+                                    android:paddingHorizontal="30sp"
+                                    android:paddingVertical="10dp"
+                                    android:text="@string/settingsVolumeSettingListenButtonText"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    app:autoSizeMaxTextSize="20sp"
+                                    app:autoSizeTextType="uniform" />
+
+                            </com.balysv.materialripple.MaterialRippleLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/VibrationSettingTextView"
+                        style="@style/HeaderTextViews"
+                        android:text="@string/settingsVibrationSettingTitleTextView" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/VibrationSettingTextView"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:text="@string/settingsVibrationOnText"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/white" />
+
+                    <CheckBox
+                        android:id="@+id/VibrationSettingEditor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/VibrationSettingTextView"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:scaleX="1.5"
+                        android:scaleY="1.5"
+                        android:theme="@style/checkBoxTheme" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/PreliminarySoundSettingTextView"
+                        style="@style/HeaderTextViews"
+                        android:text="@string/settingsPreliminarySoundSettingTitleTextView" />
+
+                    <LinearLayout
+                        android:id="@+id/PreliminarySoundSettingEditorParent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/PreliminarySoundSettingTextView"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="5dp"
+                            android:text="@string/settingsPreliminarySoundOnText"
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            app:autoSizeMaxTextSize="25sp"
+                            app:autoSizeTextType="uniform" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:orientation="horizontal">
+
+                            <ImageButton
+                                android:id="@+id/aboutPreliminaryTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@android:color/transparent"
+                                android:src="@android:drawable/ic_menu_info_details"
+                                tools:ignore="ContentDescription" />
+
+                            <CheckBox
+                                android:id="@+id/PreliminarySoundSettingEditor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:scaleX="1.5"
+                                android:scaleY="1.5"
+                                android:theme="@style/checkBoxTheme" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/PreliminaryTimeEditor"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/PreliminarySoundSettingEditorParent"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/bottom_border"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="5dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                        android:textColor="@color/white"
+                        tools:text="30" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:layout_below="@id/PreliminarySoundSettingEditorParent"
+                        android:layout_toEndOf="@id/PreliminaryTimeEditor"
+                        android:layout_toRightOf="@id/PreliminaryTimeEditor"
+                        android:gravity="bottom"
+                        android:text="@string/settingsDelayTimeSecondTextView"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                        android:textColor="@color/white" />
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        android:id="@+id/PreliminaryTimeIncreaseButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/PreliminarySoundSettingEditorParent"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="5dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:mrl_rippleColor="@color/colorPrimary"
+                        app:mrl_rippleDelayClick="false"
+                        app:mrl_rippleOverlay="true"
+                        app:mrl_rippleRoundedCorners="5dp"
+                        tools:ignore="DuplicateClickableBoundsCheck">
+
+                        <TextView
+                            style="@style/IncAndDecButtons"
+                            android:gravity="center"
+                            android:text="@string/settingsRoundsIncreaseText" />
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+
+                    <com.balysv.materialripple.MaterialRippleLayout
+                        android:id="@+id/PreliminaryTimeDecreaseButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/PreliminarySoundSettingEditorParent"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_toStartOf="@id/PreliminaryTimeIncreaseButton"
+                        android:layout_toLeftOf="@id/PreliminaryTimeIncreaseButton"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:mrl_rippleColor="@color/colorPrimary"
+                        app:mrl_rippleDelayClick="false"
+                        app:mrl_rippleOverlay="true"
+                        app:mrl_rippleRoundedCorners="5dp"
+                        tools:ignore="DuplicateClickableBoundsCheck">
+
+                        <TextView
+                            style="@style/IncAndDecButtons"
+                            android:gravity="center"
+                            android:text="@string/settingsRoundsDecreaseText" />
+
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/SensorSettingTextView"
+                        style="@style/HeaderTextViews"
+                        android:text="@string/settingsSensorSettingTitleTextView" />
+
+                    <LinearLayout
+                        android:id="@+id/SensorSetting1TextViewParent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/SensorSettingTextView"
+                        android:baselineAligned="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/SensorSetting1TextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="5dp"
+                            android:text="@string/settingsProximitySensorOnText"
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            app:autoSizeMaxTextSize="25sp"
+                            app:autoSizeTextType="uniform" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="true"
+                            android:orientation="horizontal">
+
+                            <ImageButton
+                                android:id="@+id/aboutProximitySensor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@android:color/transparent"
+                                android:src="@android:drawable/ic_menu_info_details"
+                                tools:ignore="ContentDescription" />
+
+                            <CheckBox
+                                android:id="@+id/SensorSetting1Editor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleX="1.5"
+                                android:scaleY="1.5"
+                                android:theme="@style/checkBoxTheme" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/SensorSetting1TextViewParent"
+                        android:baselineAligned="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:maxLines="1"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="5dp"
+                            android:text="@string/settingsShakeSensorOnText"
+                            android:textColor="@color/white"
+                            android:textSize="25sp"
+                            app:autoSizeMaxTextSize="25sp"
+                            app:autoSizeTextType="uniform" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:baselineAligned="true"
+                            android:orientation="horizontal">
+
+                            <ImageButton
+                                android:id="@+id/aboutShakeSensor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginEnd="5dp"
+                                android:layout_marginRight="5dp"
+                                android:background="@android:color/transparent"
+                                android:src="@android:drawable/ic_menu_info_details"
+                                tools:ignore="ContentDescription" />
+
+                            <CheckBox
+                                android:id="@+id/SensorSetting2Editor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:scaleX="1.5"
+                                android:scaleY="1.5"
+                                android:theme="@style/checkBoxTheme" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/SettingsUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:baselineAligned="true"
+            android:weightSum="2">
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/saveButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/color_primary_rounded_border"
+                android:clickable="true"
+                android:focusable="true"
+                app:mrl_rippleColor="@color/colorAccent"
+                app:mrl_rippleDelayClick="false"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleRoundedCorners="5dp"
+                tools:ignore="DuplicateClickableBoundsCheck,TooManyViews">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:text="@string/settingsSaveButton"
+                    android:textColor="@color/white" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/cancelButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/color_primary_rounded_border"
+                android:clickable="true"
+                android:focusable="true"
+                app:mrl_rippleColor="@color/colorAccent"
+                app:mrl_rippleDelayClick="false"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleRoundedCorners="5dp"
+                tools:ignore="DuplicateClickableBoundsCheck">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:text="@string/settingsCancelButton"
+                    android:textColor="@color/white" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

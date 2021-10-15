@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    tools:context=".activity.FavouritesActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/favourites_text"
+        app:titleTextColor="@color/white" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <kh.ad.boxingtimer.custom.EmptyRecyclerView
+            android:id="@+id/TysonTimer_FavouritesList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:ignore="SpeakableTextPresentCheck"
+            tools:listitem="@layout/favourite_list_item" />
+
+        <TextView
+            android:id="@+id/TysonTimer_emptyFavourites"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/emptyFavourite"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/bottom"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/nav_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/reset_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:rotation="60"
+                        android:src="@drawable/ic_reset"
+                        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:paddingEnd="5dp"
+                        android:paddingRight="5dp"
+                        android:text="@string/reset_text"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:ignore="RtlSymmetry" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/middle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/favourites_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_favourite"
+                        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/favourites_text"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/round_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/middle"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/yellow_rounded_border"
+                    android:paddingHorizontal="35dp"
+                    android:paddingVertical="15dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:text="Round 1" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:orientation="vertical"
+                    tools:ignore="RelativeOverlap">
+
+                    <ImageButton
+                        android:id="@+id/setting_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@android:color/transparent"
+                        android:src="@drawable/ic_setting"
+                        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/settings_text"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/round_timer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+                android:textColor="@color/red"
+                android:textStyle="bold"
+                app:autoSizeMaxTextSize="120sp"
+                app:autoSizeTextType="uniform"
+                tools:text="03:00" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:baselineAligned="true"
+            android:weightSum="2">
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/playButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/color_primary_rounded_border"
+                android:clickable="true"
+                android:focusable="true"
+                app:mrl_rippleColor="@color/colorAccent"
+                app:mrl_rippleDelayClick="false"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleRoundedCorners="5dp"
+                tools:ignore="DuplicateClickableBoundsCheck">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_timer_play"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/pauseButton"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_gravity="bottom"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/color_primary_rounded_border"
+                android:clickable="true"
+                android:focusable="true"
+                app:mrl_rippleColor="@color/colorAccent"
+                app:mrl_rippleDelayClick="false"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleRoundedCorners="5dp"
+                tools:ignore="DuplicateClickableBoundsCheck">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_timer_pause"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/timerDelayParent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:drawable/screen_background_dark_transparent"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/timerDelay"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal"
+                android:text="3"
+                android:textColor="@color/red"
+                android:textSize="150sp"
+                tools:ignore="HardcodedText" />
+
+        </FrameLayout>
+    </RelativeLayout>
+
+</LinearLayout>

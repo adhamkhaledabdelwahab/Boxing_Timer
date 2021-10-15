@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:background="@drawable/popup_window_rounded_background"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/AdjustmentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="10dp"
+        android:weightSum="5">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:weightSum="3">
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/minInc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_rounded_border"
+                android:clickable="true"
+                android:focusable="true"
+                android:minHeight="48dp"
+                app:mrl_rippleColor="@color/colorAccent"
+                app:mrl_rippleDelayClick="false"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleRoundedCorners="5dp"
+                tools:ignore="DuplicateClickableBoundsCheck">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingLeft="35dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="35dp"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/ic_time_adjust_increase"
+                    android:text="@string/settingsRoundsIncreaseText"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <TextView
+                android:id="@+id/min"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                tools:text="03" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/minDec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_rounded_border"
+                android:clickable="true"
+                android:focusable="true"
+                android:minHeight="48dp"
+                app:mrl_rippleColor="@color/colorAccent"
+                app:mrl_rippleDelayClick="false"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleRoundedCorners="5dp"
+                tools:ignore="DuplicateClickableBoundsCheck">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingLeft="35dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="35dp"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/ic_time_adjust_decrease"
+                    android:text="@string/settingsRoundsIncreaseText"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/colonText"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:weightSum="3">
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/secInc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_rounded_border"
+                android:clickable="true"
+                android:focusable="true"
+                android:minHeight="48dp"
+                app:mrl_rippleColor="@color/colorAccent"
+                app:mrl_rippleDelayClick="false"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleRoundedCorners="5dp"
+                tools:ignore="DuplicateClickableBoundsCheck">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingLeft="35dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="35dp"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/ic_time_adjust_increase"
+                    android:text="@string/settingsRoundsIncreaseText"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+            <TextView
+                android:id="@+id/sec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                tools:text="00" />
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/secDec"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/white_rounded_border"
+                android:clickable="true"
+                android:focusable="true"
+                android:minHeight="48dp"
+                app:mrl_rippleColor="@color/colorAccent"
+                app:mrl_rippleDelayClick="false"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleRoundedCorners="5dp"
+                tools:ignore="DuplicateClickableBoundsCheck">
+
+                <ImageButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingLeft="35dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="35dp"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/ic_time_adjust_decrease"
+                    android:text="@string/settingsRoundsIncreaseText"
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/AdjustmentLayout"
+        android:baselineAligned="true"
+        android:paddingHorizontal="10dp"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal">
+
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:id="@+id/timeAdjustSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/purple_rounded_border"
+            android:clickable="true"
+            android:focusable="true"
+            app:mrl_rippleColor="@color/purple_700"
+            app:mrl_rippleDelayClick="false"
+            app:mrl_rippleOverlay="true"
+            app:mrl_rippleRoundedCorners="5dp"
+            tools:ignore="DuplicateClickableBoundsCheck">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:text="@string/OKText"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:autoSizeMaxTextSize="20sp"
+                app:autoSizeTextType="uniform" />
+
+        </com.balysv.materialripple.MaterialRippleLayout>
+
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:id="@+id/timeAdjustCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/purple_rounded_border"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingHorizontal="10dp"
+            app:mrl_rippleColor="@color/purple_700"
+            app:mrl_rippleDelayClick="false"
+            app:mrl_rippleOverlay="true"
+            app:mrl_rippleRoundedCorners="5dp"
+            tools:ignore="DuplicateClickableBoundsCheck">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:maxLines="1"
+                android:text="@string/CANCELText"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:autoSizeMaxTextSize="20sp"
+                app:autoSizeTextType="uniform" />
+
+        </com.balysv.materialripple.MaterialRippleLayout>
+    </LinearLayout>
+
+</RelativeLayout>
