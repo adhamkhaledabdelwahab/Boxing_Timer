@@ -446,6 +446,12 @@ public class MainActivity extends AppCompatActivity {
                         BTimerStart();
                     }
                 } else {
+                    if (CurrentSetting.isSOUND_ON()) {
+                        MediaPlayer mp = MediaPlayer.create(MainActivity.this, R.raw.roundring);
+                        float lvl = (float) CurrentSetting.getSOUND_VOLUME() / 100;
+                        mp.setVolume(lvl, lvl);
+                        mp.start();
+                    }
                     Reset();
                 }
             }
