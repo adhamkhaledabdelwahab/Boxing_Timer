@@ -10,7 +10,7 @@ android {
         applicationId "kh.ad.boxingtimer"
         minSdkVersion 16
         targetSdkVersion 31
-        versionCode 6
+        versionCode 7
         versionName "2.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
