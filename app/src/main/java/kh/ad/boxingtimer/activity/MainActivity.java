@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     // AlertDialog and its builder to display information or cautions to user
     AlertDialog dialog;
     AlertDialog.Builder builder;
-    // Sensors vaiables for proximity and shake sensor settings
+    // Sensors variables for proximity and shake sensor settings
     SensorManager ProximityManager;
     Sensor Proximity;
     SensorManager ShakeManager;
