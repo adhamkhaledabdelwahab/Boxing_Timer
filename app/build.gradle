@@ -3,14 +3,14 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 34
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "kh.ad.boxingtimer"
         minSdkVersion 16
-        targetSdkVersion 31
-        versionCode 7
+        targetSdkVersion 34
+        versionCode 8
         versionName "2.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
