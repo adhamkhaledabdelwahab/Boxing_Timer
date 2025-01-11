@@ -38,4 +38,7 @@
     <string name="settingsShakeSensorOnText">Shake Sensor On</string>
     <string name="colonText">:</string>
     <string name="back_slash">/</string>
+    <string name="timer_on_toast">Timer On</string>
+    <string name="timer_off_toast">Timer Off</string>
+    <string name="round_text">Round </string>
 </resources>

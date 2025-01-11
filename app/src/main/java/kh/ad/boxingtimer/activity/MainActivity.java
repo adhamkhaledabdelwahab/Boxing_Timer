@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     SensorEventListener ProximityListener;
     SensorEventListener ShakeListener;
     // Vibration variable to set vibration settings
-    Vibrator V;
+    Vibrator vibrator;
     // shake sensors var to controll shake settings
     float acelVal, acelLast, shake;
     //CountDownTimer
@@ -86,11 +86,26 @@ public class MainActivity extends AppCompatActivity {
     // round tracker variable
     int Current_Round = 1;
     // timer type tracker variable state whether train or break
-    String Run = "Timer";
+    String Run = RunStates.Timer;
     // current setting object contains all current timer info
     Settings CurrentSetting;
     // resume after pause activity
     boolean resume = false;
+    // time sound player
+    MediaPlayer mediaPlayer;
+
+    static private class ActivityStateVariables {
+        static final String Round_Number = "round_number";
+        static final String Train_Timer = "train_timer";
+        static final String Timer = "timer";
+        static final String Break_Timer = "break_timer";
+        static final String Resume = "resume";
+    }
+
+    static private class RunStates {
+        static final String Timer = "Timer";
+        static final String Break = "Break";
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,12 +131,12 @@ public class MainActivity extends AppCompatActivity {
         setShakeSensor();
 
         if (savedInstanceState != null) {
-            String rnd_num = "Round " + savedInstanceState.getInt("round_number");
-            round_timer.setText(savedInstanceState.getString("train_timer"));
+            String rnd_num = getString(R.string.round_text) + savedInstanceState.getInt(ActivityStateVariables.Round_Number);
+            round_timer.setText(savedInstanceState.getString(ActivityStateVariables.Train_Timer));
             round_number.setText(rnd_num);
-            time = savedInstanceState.getLong("timer");
-            break_time = savedInstanceState.getLong("break_timer");
-            resume = savedInstanceState.getBoolean("resume");
+            time = savedInstanceState.getLong(ActivityStateVariables.Timer);
+            break_time = savedInstanceState.getLong(ActivityStateVariables.Break_Timer);
+            resume = savedInstanceState.getBoolean(ActivityStateVariables.Resume);
             if (resume) {
                 TimerStart();
             }
@@ -131,11 +146,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("train_timer", round_timer.getText().toString());
-        outState.putInt("round_number", Current_Round);
-        outState.putLong("timer", time);
-        outState.putLong("break_timer", BREAK_TIMER);
-        outState.putBoolean("resume", resume);
+        outState.putString(ActivityStateVariables.Train_Timer, round_timer.getText().toString());
+        outState.putInt(ActivityStateVariables.Round_Number, Current_Round);
+        outState.putLong(ActivityStateVariables.Timer, time);
+        outState.putLong(ActivityStateVariables.Break_Timer, BREAK_TIMER);
+        outState.putBoolean(ActivityStateVariables.Resume, resume);
     }
 
     public void setShakeSensor() {
@@ -160,19 +175,19 @@ public class MainActivity extends AppCompatActivity {
                 if (shake > 12) {
                     if (CurrentSetting.isSHAKE_ON()) {
                         if (!runningState) {
-                            Toast.makeText(MainActivity.this, "Timer On", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, getString(R.string.timer_on_toast), Toast.LENGTH_SHORT).show();
                             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                             if (time == TIMER && Current_Round == 1) {
                                 startDelayTime();
                             } else {
-                                if (!runningState && Run.equals("Timer"))
+                                if (!runningState && Run.equals(RunStates.Timer))
                                     TimerStart();
-                                if (!runningState && Run.equals("Break"))
+                                if (!runningState && Run.equals(RunStates.Break))
                                     BTimerStart();
                             }
                         } else {
                             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                            Toast.makeText(MainActivity.this, "Timer Off", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, getString(R.string.timer_off_toast), Toast.LENGTH_SHORT).show();
                             TimerStop();
                             resume = false;
                         }
@@ -197,19 +212,19 @@ public class MainActivity extends AppCompatActivity {
                 if (sensorEvent.values[0] == Proximity.getMaximumRange()) {
                     if (CurrentSetting.isPROXIMITY_ON()) {
                         if (!runningState) {
-                            Toast.makeText(MainActivity.this, "Timer On", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, getString(R.string.timer_on_toast), Toast.LENGTH_SHORT).show();
                             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                             if (time == TIMER && Current_Round == 1) {
                                 startDelayTime();
                             } else {
-                                if (!runningState && Run.equals("Timer"))
+                                if (!runningState && Run.equals(RunStates.Timer))
                                     TimerStart();
-                                if (!runningState && Run.equals("Break"))
+                                if (!runningState && Run.equals(RunStates.Break))
                                     BTimerStart();
                             }
                         } else {
                             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                            Toast.makeText(MainActivity.this, "Timer Off", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, getString(R.string.timer_off_toast), Toast.LENGTH_SHORT).show();
                             TimerStop();
                             resume = false;
                         }
@@ -232,22 +247,14 @@ public class MainActivity extends AppCompatActivity {
             TimerStart();
         }
         if (requestCode == 3 && resultCode == 3) {
-            if (Shake != null && ShakeManager != null && ShakeListener != null &&
-                    Proximity != null && ProximityManager != null && ProximityListener != null) {
-                ShakeManager.unregisterListener(ShakeListener, Shake);
-                ProximityManager.unregisterListener(ProximityListener, Proximity);
-            }
+            Intent i = new Intent(MainActivity.this, MainActivity.class);
             finish();
-            startActivity(getIntent());
+            startActivity(i);
         }
         if (requestCode == 6 && resultCode == 5) {
-            if (Shake != null && ShakeManager != null && ShakeListener != null &&
-                    Proximity != null && ProximityManager != null && ProximityListener != null) {
-                ShakeManager.unregisterListener(ShakeListener, Shake);
-                ProximityManager.unregisterListener(ProximityListener, Proximity);
-            }
+            Intent i = new Intent(MainActivity.this, MainActivity.class);
             finish();
-            startActivity(getIntent());
+            startActivity(i);
         }
     }
 
@@ -275,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
         CurrentSetting = gson.fromJson(data, Settings.class);
 
         round_timer.setText(CurrentSetting.getTRAINING_TIME());
-        String rnd = "Round " + Current_Round;
+        String rnd = getString(R.string.round_text) + Current_Round;
         round_number.setText(rnd);
 
         TIMER = HelperMethods.stringToMilliSeconds(CurrentSetting.getTRAINING_TIME());
@@ -323,14 +330,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void Reset() {
         Current_Round = 1;
-        String rnd = "Round " + Current_Round;
+        String rnd = getString(R.string.round_text) + Current_Round;
         round_number.setText(rnd);
         round_timer.setTextColor(Color.RED);
         round_timer.setText(CurrentSetting.getTRAINING_TIME());
         time = TIMER;
         break_time = BREAK_TIMER;
         runningState = false;
-        Run = "Timer";
+        Run = RunStates.Timer;
         resume = false;
     }
 
@@ -340,10 +347,10 @@ public class MainActivity extends AppCompatActivity {
             if (time == TIMER && Current_Round == 1) {
                 startDelayTime();
             } else {
-                Toast.makeText(MainActivity.this, "Timer On", Toast.LENGTH_SHORT).show();
-                if (!runningState && Run.equals("Timer"))
+                Toast.makeText(MainActivity.this, getString(R.string.timer_on_toast), Toast.LENGTH_SHORT).show();
+                if (!runningState && Run.equals(RunStates.Timer))
                     TimerStart();
-                if (!runningState && Run.equals("Break"))
+                if (!runningState && Run.equals(RunStates.Break))
                     BTimerStart();
             }
         }
@@ -352,7 +359,7 @@ public class MainActivity extends AppCompatActivity {
     private void pauseTimer(View view) {
         if (runningState) {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-            Toast.makeText(MainActivity.this, "Timer Off", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, getString(R.string.timer_off_toast), Toast.LENGTH_SHORT).show();
             TimerStop();
             resume = false;
         }
@@ -376,7 +383,7 @@ public class MainActivity extends AppCompatActivity {
                     delay--;
                     if (delay == 0) {
                         timerDelayParent.setVisibility(View.INVISIBLE);
-                        Toast.makeText(MainActivity.this, "Timer On", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, getString(R.string.timer_on_toast), Toast.LENGTH_SHORT).show();
                         TimerStart();
                     } else {
                         animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.animation_timer_delay);
@@ -398,20 +405,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void TimerStart() {
         resume = true;
-        Run = "Timer";
+        Run = RunStates.Timer;
         if (time == TIMER) {
             round_timer.setTextColor(Color.RED);
             round_timer.setText(CurrentSetting.getTRAINING_TIME());
         }
         if (time == TIMER && CurrentSetting.isSOUND_ON()) {
-            MediaPlayer mp = MediaPlayer.create(this, R.raw.roundring);
-            float lvl = (float) CurrentSetting.getSOUND_VOLUME() / 100;
-            mp.setVolume(lvl, lvl);
-            mp.start();
+            playSound(R.raw.roundring);
         }
         if (time == TIMER && CurrentSetting.isVIBRATION_ON()) {
-            V = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-            V.vibrate(1000);
+            vibrate();
         }
         Timer = new CountDownTimer(time, 1000) {
             @Override
@@ -425,10 +428,7 @@ public class MainActivity extends AppCompatActivity {
                         min == 0 &&
                         CurrentSetting.getPRELIMINARY_TIME() * 1000L < TIMER &&
                         CurrentSetting.isSOUND_ON()) {
-                    MediaPlayer PrelMP = MediaPlayer.create(MainActivity.this, R.raw.preliminary);
-                    float level = (float) CurrentSetting.getSOUND_VOLUME() / 100;
-                    PrelMP.setVolume(level, level);
-                    PrelMP.start();
+                    playSound(R.raw.preliminary);
                 }
             }
 
@@ -438,7 +438,7 @@ public class MainActivity extends AppCompatActivity {
                     if (CurrentSetting.getBREAK_TIME().equals("00:00")) {
                         time = TIMER;
                         Current_Round++;
-                        String rnd = "Round " + Current_Round;
+                        String rnd = getString(R.string.round_text) + Current_Round;
                         round_number.setText(rnd);
                         round_timer.setText(CurrentSetting.getTRAINING_TIME());
                         TimerStart();
@@ -447,10 +447,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else {
                     if (CurrentSetting.isSOUND_ON()) {
-                        MediaPlayer mp = MediaPlayer.create(MainActivity.this, R.raw.roundring);
-                        float lvl = (float) CurrentSetting.getSOUND_VOLUME() / 100;
-                        mp.setVolume(lvl, lvl);
-                        mp.start();
+                        playSound(R.raw.roundring);
                     }
                     Reset();
                 }
@@ -461,20 +458,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void BTimerStart() {
         resume = true;
-        Run = "Break";
+        Run = RunStates.Break;
         if (break_time == BREAK_TIMER) {
             round_timer.setTextColor(Color.GREEN);
             round_timer.setText(CurrentSetting.getBREAK_TIME());
         }
         if (break_time == BREAK_TIMER && CurrentSetting.isSOUND_ON()) {
-            MediaPlayer mp = MediaPlayer.create(this, R.raw.roundring);
-            float lvl = (float) CurrentSetting.getSOUND_VOLUME() / 100;
-            mp.setVolume(lvl, lvl);
-            mp.start();
+            playSound(R.raw.roundring);
         }
         if (time == TIMER && CurrentSetting.isVIBRATION_ON()) {
-            V = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-            V.vibrate(1000);
+            vibrate();
         }
         Timer = new CountDownTimer(break_time, 1000) {
             @Override
@@ -488,10 +481,7 @@ public class MainActivity extends AppCompatActivity {
                         min == 0 &&
                         CurrentSetting.getPRELIMINARY_TIME() * 1000L < BREAK_TIMER &&
                         CurrentSetting.isSOUND_ON()) {
-                    MediaPlayer PrelMP = MediaPlayer.create(MainActivity.this, R.raw.preliminary);
-                    float level = (float) CurrentSetting.getSOUND_VOLUME() / 100;
-                    PrelMP.setVolume(level, level);
-                    PrelMP.start();
+                    playSound(R.raw.preliminary);
                 }
             }
 
@@ -502,7 +492,7 @@ public class MainActivity extends AppCompatActivity {
                 if (Current_Round < CurrentSetting.getROUNDS()) {
                     time = TIMER;
                     Current_Round++;
-                    round_number.setText("Round " + Current_Round);
+                    round_number.setText(getString(R.string.round_text) + Current_Round);
                     round_timer.setText(CurrentSetting.getTRAINING_TIME());
                     TimerStart();
                 }
@@ -511,7 +501,23 @@ public class MainActivity extends AppCompatActivity {
         runningState = true;
     }
 
-    public void TimerStop() {
+    private void vibrate() {
+        vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        vibrator.vibrate(1000);
+    }
+
+    private void playSound(int soundResId) {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+        mediaPlayer = MediaPlayer.create(MainActivity.this, soundResId);
+        float volume = (float) CurrentSetting.getSOUND_VOLUME() / 100;
+        mediaPlayer.setVolume(volume, volume);
+        mediaPlayer.start();
+    }
+
+    private void TimerStop() {
         Timer.cancel();
         runningState = false;
     }
@@ -530,6 +536,25 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         if (resume) {
             TimerStart();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (Proximity != null && ProximityManager != null && ProximityListener != null) {
+            ProximityManager.unregisterListener(ProximityListener, Proximity);
+        }
+        if (Shake != null && ShakeManager != null && ShakeListener != null) {
+            ShakeManager.unregisterListener(ShakeListener, Shake);
+        }
+        if (vibrator != null) {
+            vibrator.cancel();
+            vibrator = null;
+        }
+        if (Timer != null) {
+            Timer.cancel();
+            Timer = null;
         }
     }
 }

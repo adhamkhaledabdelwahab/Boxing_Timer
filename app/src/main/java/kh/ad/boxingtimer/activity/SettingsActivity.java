@@ -120,7 +120,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         WhoIsThere = getIntent().getStringExtra("WhoIsThere");
         String s;
-        switch (WhoIsThere) {
+        switch (WhoIsThere != null ? WhoIsThere : "Setting") {
             case "Setting":
                 s = "Save";
                 ((Button) saveButton.getChildAt(0)).setText(s);
