@@ -117,17 +117,17 @@ public class FavouritesActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // User clicked on a menu option in the app bar overflow menu
-        switch (item.getItemId()) {
-            // Respond to a click on the "Insert dummy data" menu option
-            case R.id.insertFavourite:
-                insertFavourite();
-                return true;
-            // Respond to a click on the "Delete all entries" menu option
-            case R.id.deleteAllFavourites:
-                deleteAllFavourites();
-                return true;
+        if (item.getItemId() == R.id.insertFavourite) {
+            insertFavourite();
+            return true;
+        } else if (item.getItemId() == R.id.deleteAllFavourites) {
+            deleteAllFavourites();
+            return true;
+
+        } else {
+            return super.onOptionsItemSelected(item);
+
         }
-        return super.onOptionsItemSelected(item);
     }
 
     private void insertFavourite() {
