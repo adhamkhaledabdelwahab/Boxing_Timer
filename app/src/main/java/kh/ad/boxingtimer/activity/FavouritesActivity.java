@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +46,8 @@ public class FavouritesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // IMPORTANT: must be called BEFORE setContentView(...)
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         binding = ActivityFavouritesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
