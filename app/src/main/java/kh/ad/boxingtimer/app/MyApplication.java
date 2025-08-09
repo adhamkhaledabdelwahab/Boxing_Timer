@@ -3,6 +3,7 @@ package kh.ad.boxingtimer.app;
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 
+import androidx.annotation.NonNull;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
@@ -19,7 +20,7 @@ public class MyApplication extends MultiDexApplication {
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
     }
 }

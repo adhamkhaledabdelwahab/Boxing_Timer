@@ -2,22 +2,43 @@ plugins {
     id 'com.android.application'
 }
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "kh.ad.boxingtimer"
         minSdkVersion 21
-        targetSdkVersion 34
-        versionCode 11
-        versionName "2.5"
+        targetSdkVersion 35
+        versionCode 12
+        versionName "2.6.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig signingConfigs.release
+
+            // Enable code shrinking, obfuscation, and optimization
             minifyEnabled false
+
+            // Optional: Enable resource shrinking to remove unused resources
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -34,24 +55,17 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.6.1' // Updated
-    implementation 'com.google.android.material:material:1.9.0' // Updated
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // Updated
+    implementation 'androidx.appcompat:appcompat:1.6.1'       // latest stable :contentReference[oaicite:1]{index=1}
+    implementation 'com.google.android.material:material:1.9.0' // already up-to-date
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4' // already up-to-date
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5' // Updated
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1' // Updated
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    // For better performance and cache
     implementation 'androidx.multidex:multidex:2.0.1'
-
-    // Gson library for converting objects
-    implementation 'com.google.code.gson:gson:2.10.1' // Updated
-
-    // For ripple effect on API <= 21 and API >= 21
+    implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'com.balysv:material-ripple:1.0.2'
-
-    // Firebase BoM (Bill of Materials)
-    implementation platform('com.google.firebase:firebase-bom:32.3.1') // Updated
+    implementation platform('com.google.firebase:firebase-bom:32.3.1')
 }
 
 apply plugin: 'com.google.gms.google-services'

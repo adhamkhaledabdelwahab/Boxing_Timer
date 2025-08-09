@@ -373,9 +373,10 @@ public class SettingsActivity extends AppCompatActivity {
         builder = new AlertDialog.Builder(SettingsActivity.this, AlertDialog.THEME_HOLO_DARK);
         builder.setCancelable(true);
         builder.setTitle("Start delay time");
-        builder.setMessage("It is time to prepare for the start\n" +
-                "of the first round after pressing\n" +
-                "the start button on the timer");
+        builder.setMessage("""
+                It is time to prepare for the start
+                of the first round after pressing
+                the start button on the timer""");
         builder.setPositiveButton("OK",
                 (dialog, which) -> dialog.cancel());
         dialog = builder.create();
@@ -386,11 +387,12 @@ public class SettingsActivity extends AppCompatActivity {
         builder = new AlertDialog.Builder(SettingsActivity.this, AlertDialog.THEME_HOLO_DARK);
         builder.setCancelable(true);
         builder.setTitle("Volume Setting");
-        builder.setMessage("Preview volume is the same\n" +
-                "media volume such as music,\n" +
-                "videos and games. Volume is\n" +
-                "reflected without having to press\n" +
-                "the save button");
+        builder.setMessage("""
+                Preview volume is the same
+                media volume such as music,
+                videos and games. Volume is
+                reflected without having to press
+                the save button""");
         builder.setPositiveButton("OK",
                 (dialog, which) -> dialog.cancel());
         dialog = builder.create();
@@ -401,11 +403,12 @@ public class SettingsActivity extends AppCompatActivity {
         builder = new AlertDialog.Builder(SettingsActivity.this, AlertDialog.THEME_HOLO_DARK);
         builder.setCancelable(true);
         builder.setTitle("Preliminary Sound Setting");
-        builder.setMessage("It tells you when the exercise\n" +
-                "time reaches the set preliminary\n" +
-                "time. If the pre-sound time is\n" +
-                "greater than the exercise time, it\n" +
-                "will not be applied");
+        builder.setMessage("""
+                It tells you when the exercise
+                time reaches the set preliminary
+                time. If the pre-sound time is
+                greater than the exercise time, it
+                will not be applied""");
         builder.setPositiveButton("OK",
                 (dialog, which) -> dialog.cancel());
         dialog = builder.create();
@@ -416,14 +419,16 @@ public class SettingsActivity extends AppCompatActivity {
         builder = new AlertDialog.Builder(SettingsActivity.this, AlertDialog.THEME_HOLO_DARK);
         builder.setCancelable(true);
         builder.setTitle("Proximity Sensor Setting");
-        builder.setMessage("By using the proximity sensor, you can start\n" +
-                "(or stop) the timer without having\n" +
-                "to touch the screen. For example,\n" +
-                "when you were wearing gloves,\n" +
-                "you can control the Timer without\n" +
-                "taking off it.\n\n" +
-                "* Proximity sensors are usually\n" +
-                "located and the top of the phone");
+        builder.setMessage("""
+                By using the proximity sensor, you can start
+                (or stop) the timer without having
+                to touch the screen. For example,
+                when you were wearing gloves,
+                you can control the Timer without
+                taking off it.
+
+                * Proximity sensors are usually
+                located and the top of the phone""");
         builder.setPositiveButton("OK",
                 (dialog, which) -> dialog.cancel());
         dialog = builder.create();
@@ -434,9 +439,10 @@ public class SettingsActivity extends AppCompatActivity {
         builder = new AlertDialog.Builder(SettingsActivity.this, AlertDialog.THEME_HOLO_DARK);
         builder.setCancelable(true);
         builder.setTitle("Shake On");
-        builder.setMessage("Start and stop the timer by\n" +
-                "shaking the phone back and forth\n" +
-                "without touching the screen.");
+        builder.setMessage("""
+                Start and stop the timer by
+                shaking the phone back and forth
+                without touching the screen.""");
         builder.setPositiveButton("OK",
                 (dialog, which) -> dialog.cancel());
         dialog = builder.create();

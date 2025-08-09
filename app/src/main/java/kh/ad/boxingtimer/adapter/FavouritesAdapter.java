@@ -155,9 +155,7 @@ public class FavouritesAdapter extends RecyclerView.Adapter<FavouritesAdapter.My
         notifyItemRangeRemoved(0, size);
     }
 
-    static
-    class MyHolder extends RecyclerView.ViewHolder {
-
+    public static class MyHolder extends RecyclerView.ViewHolder {
         TextView name;
         TextView Timer;
         TextView Break;

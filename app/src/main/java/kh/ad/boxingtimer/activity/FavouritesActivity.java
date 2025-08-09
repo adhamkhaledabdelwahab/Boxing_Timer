@@ -6,8 +6,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -102,6 +100,7 @@ public class FavouritesActivity extends AppCompatActivity {
             }.getType();
             data = gson.fromJson(favourite, type);
         }
+        assert data != null;
         adapter.addAll(data);
     }
 
